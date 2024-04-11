@@ -1,5 +1,29 @@
+.container {
+    display: block;
+    margin: 50px auto;
+    width: 600px;
+    height: 550px;
+    border: none;
+}
 
 .upload {
+    margin: 0px auto;
+    width: 100%;
+    height: 350px;
+    background-color: lightgray;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 350px;
+    font-size: large;
+    white-space: pre-wrap;  
+    border: 2px solid black;
+    display: block;
+}
+
+.slideAdd {
+    display: block;
+    margin: 0 auto;
     width: 500px;
     height: 250px;
     background-color: darkblue;
@@ -9,4 +33,64 @@
     line-height: 250px;
     font-size: large;
     border-radius: 8px;
+    border: none;
+    text-align: center;
+}
+
+.upload-image {
+    width: 500px;
+    height: 250px;
+
+    border-radius: 8px;
+    border: none;
+    margin: 50px auto;
+}
+
+.del {
+    width: 65px;
+    height: 35px;
+    border: none;
+    font-size: large;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    display: block;
+    float: right;
+}
+table {
+    border: 2px solid black;
+    text-align: center;
+    width: 600px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100.6%;
+}
+
+th,
+td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+td:first-child {
+    background-color: darkblue;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    max-width: 140px;
+}
+
+input[type="text"] {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
 }
