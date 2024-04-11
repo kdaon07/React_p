@@ -1,5 +1,12 @@
+
 .upload {
-    width: 300px;
-    height: 200px;
+    width: 500px;
+    height: 250px;
     background-color: darkblue;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 250px;
+    font-size: large;
+    border-radius: 8px;
 }
