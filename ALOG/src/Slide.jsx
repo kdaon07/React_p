@@ -29,10 +29,10 @@ const Upload = ({ slide, onRemove }) => {
                         <label style={{ display: 'block' }}>
                             {imgSrc == '' ? (
                                 <div className='upload' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    클릭 또는 드래그 하여 파일 업로드
+                                    클릭 또는 드래그 하여<br/>파일 업로드
                                 </div>
                             ) : (
-                                <img src={imgSrc} className='upload' alt='preview-img' style={{ display: 'block', width: '100%', height: '100%' }} />
+                                <img src={imgSrc} className='upload' alt='preview-img' />
                             )}
                             <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
                         </label>
@@ -43,7 +43,7 @@ const Upload = ({ slide, onRemove }) => {
                     <td><input type="text" name="name" /></td>
                 </tr>
                 <tr>
-                    <td>설명(최대 256자)</td>
+                    <td>설명<br/>(최대 256자)</td>
                     <td><textarea cols="50" rows="5" maxlength="100"></textarea></td>
                 </tr>
                 <tr>

@@ -7,13 +7,12 @@
 }
 
 .upload {
-    width: 100%;
-    height: 100%;
+    width: 600px;
+    height: 350px;
     background-color: lightgray;
     color: white;
     font-weight: bold;
-    text-align: center;
-    line-height: 350px;
+    align-items: center;
     font-size: large;
     white-space: pre-wrap;  
     border: none;
