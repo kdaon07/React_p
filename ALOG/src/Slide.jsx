@@ -32,7 +32,7 @@ const Upload = ({ slide, onRemove }) => {
                                     클릭 또는 드래그 하여<br/>파일 업로드
                                 </div>
                             ) : (
-                                <img src={imgSrc} className='upload' alt='preview-img'/>
+                                <img src={imgSrc} className='upload' alt='preview-img' />
                             )}
                             <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
                         </label>

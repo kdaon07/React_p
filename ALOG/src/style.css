@@ -12,9 +12,7 @@
     background-color: lightgray;
     color: white;
     font-weight: bold;
-    text-align: center;
-    /* line-height: 350px; */
-    align-items: center; 
+    align-items: center;
     font-size: large;
     white-space: pre-wrap;  
     border: none;
