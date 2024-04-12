@@ -23,13 +23,21 @@ const Upload = ({ slide, onRemove }) => {
                 </b>
                 <button className='del' onClick={() => onRemove(num)}>삭제</button>
             </div>
-            <label style={{ display: 'block' }}>
-                <>
-                    {imgSrc == '' ? <div className='upload'>클릭 또는 드래그 하여 파일 업로드</div> : <img src={imgSrc} className='upload' alt='preview-img' />}
-                </>
-                <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
-            </label>
             <table>
+                <tr>
+                    <td colSpan={2} className="upload-cell">
+                        <label style={{ display: 'block' }}>
+                            {imgSrc == '' ? (
+                                <div className='upload' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                    클릭 또는 드래그 하여 파일 업로드
+                                </div>
+                            ) : (
+                                <img src={imgSrc} className='upload' alt='preview-img' style={{ display: 'block', width: '100%', height: '100%' }} />
+                            )}
+                            <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
+                        </label>
+                    </td>
+                </tr>
                 <tr>
                     <td>제목</td>
                     <td><input type="text" name="name" /></td>
@@ -43,7 +51,8 @@ const Upload = ({ slide, onRemove }) => {
                     <td><input type="text" name="name" /></td>
                 </tr>
             </table>
-        </div>
+            <button className='update' onClick={(e) => alert(num.toString() + "번째가 수정됨")}>수정 하기</button>
+        </div >
     )
 }
 
