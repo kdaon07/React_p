@@ -83,7 +83,7 @@ export default function UseAdd() {
 
     }
 
-    const { name, date, target, language, price1, price2, sh_ex, l_ex } = User;
+    const { date, target, language, price1, price2, sh_ex, l_ex } = User;
 
     return (
         <Container>
