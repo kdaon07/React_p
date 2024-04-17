@@ -44,7 +44,7 @@ const Upload = ({ slide, onRemove }) => {
                 </tr>
                 <tr>
                     <td>설명<br/>(최대 256자)</td>
-                    <td><textarea cols="50" rows="5" maxlength="256"></textarea></td>
+                    <td><textarea cols="50" rows="5" maxlength="100"></textarea></td>
                 </tr>
                 <tr>
                     <td>URL</td>

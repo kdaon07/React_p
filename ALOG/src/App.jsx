@@ -1,10 +1,9 @@
 import react from 'react'
+import './style.css'
 import Slide from './Slide';
-import UseAdd from './UseAdd';
 
 export default function App() {
   return (
-    // <Slide/>
-    <UseAdd/>
+    <Slide/>
   );
 }
