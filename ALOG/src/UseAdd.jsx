@@ -228,7 +228,7 @@ export default function UseAdd() {
                                 <div style={{ marginTop: "5px" }}>
                                     <img src={Image3} alt="badge" className='badge' style={{ float: 'left' }} />
                                     <h2 style={{ float: 'left', marginLeft: '20px' }}>{Name}</h2><br />
-                                    <p style={{ alignItems: 'center', float: 'left' }}>
+                                    <p style={{display:'block', float:'left', marginTop:'20px', width:'500px'}}>
                                         {l_ex}
                                     </p>
                                 </div>
@@ -244,7 +244,7 @@ export default function UseAdd() {
                                 <div>
                                     교육 기간
                                 </div>
-                                <h3>
+                                <h3 style={{display:'block', height:'10px'}}>
                                     {date}
                                 </h3>
                             </span>
@@ -252,7 +252,7 @@ export default function UseAdd() {
                                 <div>
                                     추천 학생
                                 </div>
-                                <h3>
+                                <h3 style={{display:'block', height:'10px'}}>
                                     {target}
                                 </h3>
                             </span>
