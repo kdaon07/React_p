@@ -1,5 +1,29 @@
 import { React, useState } from 'react';
 import './style2.css';
+import styled from "styled-components";
+
+const Addbtn = styled.button`
+background-color: rgba(127, 190, 37, 1);
+border: none;
+border-radius: 6px;
+font-size: large;
+font-weight: 600;
+color: white;
+cursor: pointer;
+width: 250px;
+height: 50px;
+margin-left: 65%;
+`;
+
+const Container = styled.div`
+top: 0px;
+position: relative;
+width: 100%;
+height: 1350px;
+display: grid;
+grid-template-columns: 6fr 3fr;
+grid-template-rows: 10fr 4fr;
+`;
 
 const Pic = ({ prop, ImageChange }) => {
     const [imgSrc, setimgSrc] = useState('');
@@ -29,12 +53,10 @@ const Pic = ({ prop, ImageChange }) => {
             </label>
         </div>
     );
-
 }
 
 export default function UseAdd() {
     const [User, setUser] = useState([{
-        name: '',
         date: '',
         target: '',
         language: '',
@@ -45,6 +67,7 @@ export default function UseAdd() {
     },]);
 
     const [Course, setCourse] = useState('정규');
+    const [Name, setName] = useState('루키 과정');
     const [Image1, setImage1] = useState('');
     const [Image2, setImage2] = useState('');
     const [Image3, setImage3] = useState('');
@@ -61,8 +84,9 @@ export default function UseAdd() {
     }
 
     const { name, date, target, language, price1, price2, sh_ex, l_ex } = User;
+
     return (
-        <div className='container'>
+        <Container>
             <div className="item">
                 <table>
                     <tr>
@@ -85,11 +109,12 @@ export default function UseAdd() {
                     <tr>
                         <td>과정명</td>
                         <td>
-                            <input type='text' value={name} spellcheck="false" name='name' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    name: e.target.value,
-                                })} />
+                            <select value={Name} name='Name' onChange={
+                                (e) => setName(e.currentTarget.value)}>
+                                <option value={"루키 과정"}>루키 과정</option>
+                                <option value={"스톤 과정"}>스톤 과정</option>
+                                <option value={"브론즈 과정"}>브론즈 과정</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -163,7 +188,7 @@ export default function UseAdd() {
                 </table>
             </div>
             <div className="item">
-                <Pic prop={{ number: 1, text1: "메인 사진", text2: "(1X1)" }} ImageChange={ImageChange} />
+                <Pic prop={{ number: 1, text1: "메인 사진", text2: "(상관 없음)" }} ImageChange={ImageChange} />
                 <Pic prop={{ number: 2, text1: "디테일 박스 사진", text2: "(4X3)" }} ImageChange={ImageChange} />
                 <Pic prop={{ number: 3, text1: "뱃지 사진", text2: "(1X1)" }} ImageChange={ImageChange} />
                 <div className='banner1'>
@@ -178,12 +203,12 @@ export default function UseAdd() {
                             <div>⌚ {date}</div>
                         </div>
                         <div style={{ marginTop: "10px" }}>
-                            <img src={Image3} alt="badge" className='badge'/>
+                            <img src={Image3} alt="badge" className='badge' />
                         </div>
                     </div>
-                    <div style={{ marginLeft: "30px", marginTop: "-15px", lineHeight: "8px", width:"250px", height:"100px"}}>
-                        <h2><b>{name}</b></h2>
-                        <div style={{fontSize:"22px"}}>{language}</div>
+                    <div style={{ marginLeft: "30px", marginTop: "-15px", lineHeight: "8px", width: "250px", height: "100px" }}>
+                        <h2><b>{Name}</b></h2>
+                        <div style={{ fontSize: "22px" }}>{language}</div>
                         <p style={{ color: "gray", width: "220px", lineHeight: "14px" }}>{sh_ex}</p>
                     </div>
                     <div style={{ float: "right", marginRight: "30px", marginTop: "-30px", display: "block" }}>
@@ -193,8 +218,51 @@ export default function UseAdd() {
             </div>
 
             <div className="item">
-
+                <div className='banner2'>
+                    <div className='bbox'>
+                        <div style={{ float: 'left' }}>
+                            <img src={Image2} alt='detailUrl' className='detailUrl' />
+                        </div>
+                        <div style={{ float: 'left', marginLeft: '20px', width: '65%' }}>
+                            <div style={{ float: 'left' }}>
+                                <div style={{ marginTop: "5px" }}>
+                                    <img src={Image3} alt="badge" className='badge' style={{ float: 'left' }} />
+                                    <h2 style={{ float: 'left', marginLeft: '20px' }}>{Name}</h2><br />
+                                    <p style={{ alignItems: 'center', float: 'left' }}>
+                                        {l_ex}
+                                    </p>
+                                </div>
+                            </div>
+                            <div style={{ float: 'right', marginRight: '0px', marginTop: '25px' }}>
+                                <div style={{ color: "gray" }}>
+                                    <div>📅 {Course} 코스</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{ bottom: '20px', position: 'absolute', left: '395px' }}>
+                            <span style={{ lineHeight: '10px', float: 'left' }}>
+                                <div>
+                                    교육 기간
+                                </div>
+                                <h3>
+                                    {date}
+                                </h3>
+                            </span>
+                            <span style={{ lineHeight: '10px', float: 'left', marginLeft: '20px' }}>
+                                <div>
+                                    추천 학생
+                                </div>
+                                <h3>
+                                    {target}
+                                </h3>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            <Addbtn className='addbtn' onClick={(e) => alert("추가 성공!")}>
+                추가하기
+            </Addbtn>
+        </Container>
     );
 }
