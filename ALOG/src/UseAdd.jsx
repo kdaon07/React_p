@@ -2,72 +2,10 @@ import { React, useState } from 'react';
 import './style2.css';
 import styled from "styled-components";
 
-const Pic = ({ prop, ImageChange }) => {
-    const [imgSrc, setimgSrc] = useState('');
-    const { number, text1, text2 } = prop;
-    const preview = (file) => {
-        const read = new FileReader();
-        read.readAsDataURL(file);
-
-        read.onload = () => {
-            setimgSrc(read.result);
-            ImageChange(number, read.result);
-        };
-    };
-
-    return (
-        <div>
-            <h3><b>사진 {number}</b></h3>
-            <label>
-                {imgSrc == '' ? (
-                    <div className='upload'>
-                        <h2>{text1}</h2><h3>{text2}</h3>
-                    </div>
-                ) : (
-                    <img src={imgSrc} className='upload' alt='preview-img' />
-                )}
-                <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
-            </label>
-        </div>
-    );
-}
-
-const CourseInput = (props) => {
-    const { text, value1, setCourse, Course } = props;
-    return (
-        <label style={{ marginLeft: "10px" }}><input type='radio' name='course' value={value1} onChange={(e) => {
-            setCourse(e.currentTarget.value);
-        }} checked={Course == value1} /> {text}
-        </label>
-    );
-}
-
-const TextInput = (props) => {
-    const { value1, name1, setUser, User } = props;
-    return (
-        <input type='text' value={value1} spellcheck="false" name={name1} onChange={
-            (e) => setUser({
-                ...User,
-                [name1]: e.target.value,
-            })} />
-    );
-}
-
-const Textarea = (props) => {
-    const { title, s, cols, rows, len, value1, name1, setUser, User } = props;
-    return (
-        <tr>
-            <td>{title}<small>({s})</small></td>
-            <td>
-                <textarea cols={cols} rows={rows} maxlength={len} value={value1} spellcheck="false" name={name1} onChange={
-                    (e) => setUser({
-                        ...User,
-                        [name1]: e.target.value,
-                    })}></textarea>
-            </td>
-        </tr>
-    );
-}
+import Pic from './pic';
+import CourseInput from "./CourseInput";
+import TextInput from "./TextInput";
+import Textarea from './Textarea';
 
 export default function UseAdd() {
     const [User, setUser] = useState([{
