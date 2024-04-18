@@ -2,29 +2,6 @@ import { React, useState } from 'react';
 import './style2.css';
 import styled from "styled-components";
 
-const Addbtn = styled.button`
-background-color: rgba(127, 190, 37, 1);
-border: none;
-border-radius: 6px;
-font-size: large;
-font-weight: 600;
-color: white;
-cursor: pointer;
-width: 250px;
-height: 50px;
-margin-left: 65%;
-`;
-
-const Container = styled.div`
-top: 0px;
-position: relative;
-width: 100%;
-height: 1350px;
-display: grid;
-grid-template-columns: 6fr 3fr;
-grid-template-rows: 10fr 4fr;
-`;
-
 const Pic = ({ prop, ImageChange }) => {
     const [imgSrc, setimgSrc] = useState('');
     const { number, text1, text2 } = prop;
@@ -52,6 +29,43 @@ const Pic = ({ prop, ImageChange }) => {
                 <input accept='.png, .jepg, .jpg' type='file' style={{ display: 'none' }} onChange={(e) => preview(e.target.files[0])}></input>
             </label>
         </div>
+    );
+}
+
+const CourseInput = (props) => {
+    const { text, value1, setCourse, Course } = props;
+    return (
+        <label style={{ marginLeft: "10px" }}><input type='radio' name='course' value={value1} onChange={(e) => {
+            setCourse(e.currentTarget.value);
+        }} checked={Course == value1} /> {text}
+        </label>
+    );
+}
+
+const TextInput = (props) => {
+    const { value1, name1, setUser, User } = props;
+    return (
+        <input type='text' value={value1} spellcheck="false" name={name1} onChange={
+            (e) => setUser({
+                ...User,
+                [name1]: e.target.value,
+            })} />
+    );
+}
+
+const Textarea = (props) => {
+    const { title, s, cols, rows, len, value1, name1, setUser, User } = props;
+    return (
+        <tr>
+            <td>{title}<small>({s})</small></td>
+            <td>
+                <textarea cols={cols} rows={rows} maxlength={len} value={value1} spellcheck="false" name={name1} onChange={
+                    (e) => setUser({
+                        ...User,
+                        [name1]: e.target.value,
+                    })}></textarea>
+            </td>
+        </tr>
     );
 }
 
@@ -92,18 +106,10 @@ export default function UseAdd() {
                     <tr>
                         <td>코스</td>
                         <td>
-                            <label style={{ marginLeft: "10px" }}><input type='radio' name='course' value={"정규"} onChange={(e) => {
-                                setCourse(e.currentTarget.value);
-                            }} checked={Course == "정규"} /> 정규 과정 </label>
-                            <label><input type='radio' name='course' value={"특별"} onChange={(e) => {
-                                setCourse(e.currentTarget.value);
-                            }} checked={Course == "특별"} /> 특별 과정 </label>
-                            <label><input type='radio' name='course' value={"자격증"} onChange={(e) => {
-                                setCourse(e.currentTarget.value);
-                            }} checked={Course == "자격증"} /> 자격증 과정 </label>
-                            <label><input type='radio' name='course' value={"온라인"} onChange={(e) => {
-                                setCourse(e.currentTarget.value);
-                            }} checked={Course == "온라인"} /> 온라인 과정 </label>
+                            <CourseInput text="정규 과정" value1="정규" setCourse={setCourse} Course={Course} />
+                            <CourseInput text="특별 과정" value1="특별" setCourse={setCourse} Course={Course} />
+                            <CourseInput text="자격증 과정" value1="자격증" setCourse={setCourse} Course={Course} />
+                            <CourseInput text="온라인 과정" value1="온라인" setCourse={setCourse} Course={Course} />
                         </td>
                     </tr>
                     <tr>
@@ -120,71 +126,35 @@ export default function UseAdd() {
                     <tr>
                         <td>수강 기간</td>
                         <td>
-                            <input type='text' value={date} spellcheck="false" name='date' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    date: e.target.value,
-                                })} />
+                            <TextInput value1={date} name1="date" setUser={setUser} User={User} />
                         </td>
                     </tr>
                     <tr>
                         <td>추천 대상</td>
                         <td>
-                            <input type='text' value={target} spellcheck="false" name='target' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    target: e.target.value,
-                                })} />
+                            <TextInput value1={target} name1="target" setUser={setUser} User={User} />
                         </td>
                     </tr>
                     <tr>
                         <td>사용 언어</td>
                         <td>
-                            <input type='text' value={language} spellcheck="false" name='language' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    language: e.target.value,
-                                })} />
+                            <TextInput value1={language} name1="language" setUser={setUser} User={User} />
                         </td>
                     </tr>
                     <tr>
                         <td>가격<small>(주말/평일)</small></td>
                         <td>
                             <span className='input-grid'>
-                                <div><input type='text' value={price1} spellcheck="false" name='price1' onChange={
-                                    (e) => setUser({
-                                        ...User,
-                                        price1: e.target.value,
-                                    })} /></div>
-                                <div><input type='text' value={price2} spellcheck="false" name='price2' onChange={
-                                    (e) => setUser({
-                                        ...User,
-                                        price2: e.target.value,
-                                    })} /></div>
+                                <div>
+                                    <TextInput value1={price1} name1="price1" setUser={setUser} User={User} /></div>
+                                <div>
+                                    <TextInput value1={price2} name1="price2" setUser={setUser} User={User} /></div>
                             </span>
                             <div className='text'><b>단위 : ₩</b></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>짧은 설명<small>(80자 이내)</small></td>
-                        <td>
-                            <textarea cols="20" rows="5" maxlength="80" value={sh_ex} spellcheck="false" name='sh_ex' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    sh_ex: e.target.value,
-                                })}></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>긴 설명<small>(200자 이내)</small></td>
-                        <td>
-                            <textarea cols="50" rows="10" maxlength="200" value={l_ex} spellcheck="false" name='l_ex' onChange={
-                                (e) => setUser({
-                                    ...User,
-                                    l_ex: e.target.value,
-                                })}></textarea>
-                        </td>
-                    </tr>
+                        <Textarea title="짧은 설명" s="80자 이내" cols="20" rows="5" len="80" value1={sh_ex} name1="sh_ex" setUser={setUser} User={User} />
+                        <Textarea title="긴 설명" s="200자 이내" cols="50" rows="10" len="200" value1={l_ex} name1="l_ex" setUser={setUser} User={User} />
                 </table>
             </div>
             <div className="item">
@@ -228,7 +198,7 @@ export default function UseAdd() {
                                 <div style={{ marginTop: "5px" }}>
                                     <img src={Image3} alt="badge" className='badge' style={{ float: 'left' }} />
                                     <h2 style={{ float: 'left', marginLeft: '20px' }}>{Name}</h2><br />
-                                    <p style={{display:'block', float:'left', marginTop:'20px', width:'500px'}}>
+                                    <p style={{ display: 'block', float: 'left', marginTop: '20px', width: '500px' }}>
                                         {l_ex}
                                     </p>
                                 </div>
@@ -244,7 +214,7 @@ export default function UseAdd() {
                                 <div>
                                     교육 기간
                                 </div>
-                                <h3 style={{display:'block', height:'10px'}}>
+                                <h3 style={{ display: 'block', height: '10px' }}>
                                     {date}
                                 </h3>
                             </span>
@@ -252,7 +222,7 @@ export default function UseAdd() {
                                 <div>
                                     추천 학생
                                 </div>
-                                <h3 style={{display:'block', height:'10px'}}>
+                                <h3 style={{ display: 'block', height: '10px' }}>
                                     {target}
                                 </h3>
                             </span>
@@ -266,3 +236,26 @@ export default function UseAdd() {
         </Container>
     );
 }
+
+const Addbtn = styled.button`
+background-color: rgba(127, 190, 37, 1);
+border: none;
+border-radius: 6px;
+font-size: large;
+font-weight: 600;
+color: white;
+cursor: pointer;
+width: 250px;
+height: 50px;
+margin-left: 65%;
+`;
+
+const Container = styled.div`
+top: 0px;
+position: relative;
+width: 100%;
+height: 1350px;
+display: grid;
+grid-template-columns: 6fr 3fr;
+grid-template-rows: 10fr 4fr;
+`;
